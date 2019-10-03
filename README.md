@@ -1,7 +1,6 @@
-flask-video-streaming
-=====================
+STREAMING VIDEO WITH FLASK
 
-Supporting code for my article on [video streaming with Flask][].
+This code is used to stream video on the Pi, using it as the server.
 
 
-[]: http://blog.miguelgrinberg.com/post/video-streaming-with-flask
+http://blog.miguelgrinberg.com/post/video-streaming-with-flask
