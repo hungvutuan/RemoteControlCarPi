@@ -1,9 +1,9 @@
 #!/usr/bin/env python
-# from importlib import import_module
-# import os
-# from importlib import import_module
-from flask import Flask, render_template, Response
+import motor
+import os
+from importlib import import_module
 
+from flask import Flask, render_template, Response, request
 
 # import camera driver
 # if os.environ.get('CAMERA'):
@@ -16,12 +16,22 @@ from camera_pi import Camera
 
 
 app = Flask(__name__)
+app.secret_key = "vth"
+
+LEFT, RIGHT, FORWARD, BACKWARD, STOP = "left", "right", "forward", "backward", "stop"
+AVAILABLE_COMMANDS = {
+    'Left': LEFT,
+    'Forward': FORWARD,
+    'Right': RIGHT,
+    'Backward': BACKWARD,
+    'Stop': STOP
+}
 
 
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
 def index():
     """Home page"""
-    return render_template('index.html')
+    return render_template('index.html', commands=AVAILABLE_COMMANDS)
 
 
 def gen(camera):
@@ -40,6 +50,33 @@ def video_feed():
     so quickly, it'd look like a video."""
     return Response(gen(Camera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
+
+
+@app.route('/<cmd>')
+def command(cmd=None):
+    """Control motor wheels from listening the keyboard from HTML"""
+    if cmd == STOP:
+        motor.stop()
+    elif cmd == FORWARD:
+        motor.forward()
+    elif cmd == BACKWARD:
+        motor.backward()
+    elif cmd == LEFT:
+        motor.left()
+    else:
+        motor.right()
+    response = "Moving {}".format(cmd.capitalize())
+    return response, 200, {'Content-Type': 'text/plain'}
+
+
+@app.route('/log_out')
+def shutdown_server():
+    """Send a request to shutdown werkzeug server and load the signing out page"""
+    func = request.environ.get('werkzeug.server.shutdown')
+    if func is None:
+        raise RuntimeError('Not running with the Werkzeug Server')
+    func()
+    return render_template("log_out.html")
 
 
 if __name__ == '__main__':

@@ -9,8 +9,8 @@ class Camera(BaseCamera):
     def frames():
         with picamera.PiCamera() as camera:
             """let camera warm up"""
-            camera.resolution = (640,480)
-            camera.framerate = 15
+            camera.resolution = (320,240)
+            camera.framerate = 5
             camera.vflip = True
             time.sleep(2)
 
@@ -24,3 +24,4 @@ class Camera(BaseCamera):
                 # reset stream for next frame
                 stream.seek(0)
                 stream.truncate()
+

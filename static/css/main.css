@@ -1,0 +1,108 @@
+html {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #d3ffbb; /* Fills the page */
+    position: relative; /* Fix for absolute positioning */
+}
+
+button {
+    background-color: #ace538; /* yellow green button */
+    border: none;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 0px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    float: inherit;
+    margin: 2px;
+    border-radius: 6px;
+}
+
+button:hover {
+    background-color: #17b700;
+}
+
+
+.stop {
+    height: 55px;
+    width: 55px;
+    font-size: 20px;
+    border-radius: 50%;
+    margin-bottom: 0;
+}
+
+.stop:hover {
+    background-color: #ff6e01;
+}
+
+.up {
+    position: relative;
+    top: 10px;
+}
+
+.down{
+    position: relative;
+    margin-top: 2px;
+}
+
+.off {
+    background-color: #ff000a; /* yellow green button */
+    border: none;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    float: inherit;
+    margin: 2px;
+    border-radius: 6px;
+}
+
+.off:hover {
+    background-color: #cb0000;
+}
+
+span {
+    font-size: 250%;
+}
+
+div.signal {
+    border: 2px solid yellowgreen;
+}
+
+div.keyboard {
+    text-align: center;
+    border: 2px dashed yellowgreen;
+    border-radius: 8px;
+}
+
+div.maps {
+    float: right;
+    text-align: center;
+    width: 30%;
+}
+
+article {
+    /*margin-right: 30%;*/
+    /*border-right: 1px solid gray;*/
+    margin-right: 0%;
+    padding: 1em;
+    overflow: hidden;
+}
+
+header {
+    padding: 0.2em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
