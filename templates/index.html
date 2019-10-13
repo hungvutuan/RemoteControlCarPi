@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Control Car</title>
+</head>
+
+<body>
+{#<div class="maps">#}
+{#    <h3>Mapping</h3>#}
+{#    <canvas id="myCanvas" width="100" height="100" style="border:1px solid #000000;"></canvas>#}
+{#</div>#}
+
+<article>
+    <div class="video">
+        <h1 align="center">Video Streaming for Raspberry Pi</h1>
+        <div align="center"><img src="{{ url_for('video_feed') }}" alt="Video printer"></div>
+    </div>
+    <div class="signal" align="center">
+        <h3 align="center">State</h3>
+
+        {#PRINT SELF-CHANGING TEXT#}
+        <p id="text_warning" onmousedown="print_change()">READY</p>
+    </div>
+    <br/>
+
+    <div class="keyboard">
+        <h3 align="center">Control Center</h3>
+        <text id="kp"></text>
+        <p>
+            <button class="up" onclick="move_up()"><span>&#8593;</span></button>
+        </p>
+        <p>
+            <button class="left" onclick="move_left()"><span>&#8592;</span></button>
+            <button class="stop" onclick="move_stop()">X</button>
+            <button class="right" onclick="move_right()"><span>&#8594;</span></button>
+        </p>
+        <p>
+            <button class="down" onclick="move_down()"><span>&#8595;</span></button>
+        </p>
+
+        <input type="button" class="off" value="Turn Off" onclick="window.location.href='/log_out'"/>
+
+        <br/><br/>
+
+    </div>
+</article>
+
+<script type="text/javascript"
+        src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
