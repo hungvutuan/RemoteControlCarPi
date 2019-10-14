@@ -62,7 +62,7 @@ function print_change() {
                 $text.html(numbers[index - 1]);
             }, (i - 1) * 1000);
         })(i);
-        // check
+        // check for Git
     }
 }
 

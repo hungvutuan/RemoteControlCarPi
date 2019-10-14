@@ -7,58 +7,45 @@ html {
 
 button {
     background-color: #ace538; /* yellow green button */
+    position: relative;
     border: none;
-    height: 50px;
-    width: 50px;
+    height: 55px;
+    width: 55px;
     text-align: center;
-    line-height: 0px;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
-    cursor: pointer;
-    float: inherit;
     margin: 2px;
     border-radius: 6px;
 }
 
 button:hover {
-    background-color: #17b700;
+    background-color: #90be2d;
 }
 
-
 .stop {
-    height: 55px;
-    width: 55px;
-    font-size: 20px;
+    background-color: #ff6e01;
+    font-size: 25px;
     border-radius: 50%;
-    margin-bottom: 0;
+    /*margin-top: 0;*/
 }
 
 .stop:hover {
-    background-color: #ff6e01;
+    background-color: #d75d01;
 }
 
 .up {
-    position: relative;
     top: 10px;
 }
 
-.down{
-    position: relative;
-    margin-top: 2px;
+.down {
+    margin-top: -8px;
 }
 
 .off {
     background-color: #ff000a; /* yellow green button */
     border: none;
     padding: 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    float: inherit;
-    margin: 2px;
+    margin: 20px;
     border-radius: 6px;
 }
 
@@ -67,7 +54,7 @@ button:hover {
 }
 
 span {
-    font-size: 250%;
+    font-size: 220%;
 }
 
 div.signal {
