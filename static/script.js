@@ -14,7 +14,7 @@ document.onkeydown = function (event) {
     else if (key_code === 39 || key_press === "D") move_right();
     else if (key_code === 16 || key_press === "X") move_stop();
     console.log(key_press);
-}
+};
 
 function move_up() {
     const request = new XMLHttpRequest();
@@ -62,6 +62,7 @@ function print_change() {
                 $text.html(numbers[index - 1]);
             }, (i - 1) * 1000);
         })(i);
+        // check for Git
     }
 }
 
