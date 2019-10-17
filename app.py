@@ -1,9 +1,11 @@
 #!/usr/bin/env python
+import random
 import motor
 import os
+import led
 from importlib import import_module
 
-from flask import Flask, render_template, Response, request
+from flask import Flask, render_template, Response, request, jsonify
 
 # import camera driver
 # if os.environ.get('CAMERA'):
@@ -12,8 +14,7 @@ from flask import Flask, render_template, Response, request
 #     from camera import Camera
 
 # Raspberry Pi camera module (requires picamera package)
-from camera import Camera
-
+from camera_pi import Camera
 
 app = Flask(__name__)
 app.secret_key = "vth"
@@ -28,7 +29,7 @@ AVAILABLE_COMMANDS = {
 }
 
 
-@app.route('/', methods=['POST', 'GET'])
+@app.route('/')
 def index():
     """Home page"""
     return render_template('index.html', commands=AVAILABLE_COMMANDS)
@@ -37,7 +38,8 @@ def index():
 def gen(camera):
     while True:
         """This function generates the frame for displaying the video. The 'yield' increments the iteration by the 
-        next, therefore, the image overlaps. The frame variable is used later in the function video_feed() """
+        next, therefore, the image overlaps. The frame variable is used later in the function video_feed()"""
+        # led.measure()
         frame = camera.get_frame()
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
@@ -54,19 +56,24 @@ def video_feed():
 
 @app.route('/<cmd>')
 def command(cmd=None):
-    """Control motor wheels from listening the keyboard from HTML"""
     if cmd == STOP:
+        # led_s()
+        # measure()
         motor.stop()
     elif cmd == FORWARD:
+        # led()
+
         motor.forward()
     elif cmd == BACKWARD:
+        # led()
         motor.backward()
     elif cmd == LEFT:
+        # led_l()
         motor.left()
-    else:
+    elif cmd == RIGHT:
+        # led_r()
         motor.right()
-    response = "Moving {}".format(cmd.capitalize())
-    return response, 200, {'Content-Type': 'text/plain'}
+    return "Success", 200, {'Content-Type': 'text/plain'}
 
 
 @app.route('/log_out')
@@ -79,5 +86,16 @@ def shutdown_server():
     return render_template("log_out.html")
 
 
+def dist():             # will be replaced with led.distance()
+    return (random.random())*100
+
+
+@app.route('/get_dist/', methods=['GET', 'POST'])
+def get_dist():
+    if request.method == 'GET':
+        request.args.get('dist', default=0, type=int)
+        return jsonify(result=led.distance())
+
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80, debug=True, threaded=True)
+    app.run(host='0.0.0.0', port=5005, debug=True, threaded=True)
