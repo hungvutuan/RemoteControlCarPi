@@ -4,14 +4,12 @@ document.onkeydown = function (event) {
     const status = document.getElementById('status');
     //status.innerHTML = "DOWN Event Fired For : " + code;
 
-
     if (code === "ArrowUp" || code === "KeyW") moveUp();
     else if (code === "ArrowLeft" || code === "KeyA") moveLeft();
     else if (code === "ArrowDown" || code === "KeyS") moveDown();
     else if (code === "ArrowRight" || code === "KeyD") moveRight();
     else if (code === "Space" || code === "KeyX") moveStop();
     console.log(code);
-
 };
 
 function moveUp() {
@@ -49,13 +47,12 @@ function moveStop() {
     console.log("Stop");
 }
 
-
 // print distance with 1 sec sleep
 // Client must have a loop to send request (Get)
 // The server receives and returns the distance accordingly
 let i=0,                                // counter
     runTime = 100,                      // Seconds to run
-    range = 50;                         // Proximity barrier (in cm)
+    range = 15;                         // Proximity barrier (in cm)
 function loopDistance() {
     setTimeout(function () {
         $(document).ready(function() {

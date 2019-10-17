@@ -32,6 +32,7 @@ AVAILABLE_COMMANDS = {
 @app.route('/')
 def index():
     """Home page"""
+    led.measure()
     return render_template('index.html', commands=AVAILABLE_COMMANDS)
 
 
@@ -57,21 +58,19 @@ def video_feed():
 @app.route('/<cmd>')
 def command(cmd=None):
     if cmd == STOP:
-        # led_s()
-        # measure()
+        led.led_stop()
         motor.stop()
     elif cmd == FORWARD:
-        # led()
-
+        led.led_off()
         motor.forward()
     elif cmd == BACKWARD:
-        # led()
+        led.led_off()
         motor.backward()
     elif cmd == LEFT:
-        # led_l()
+        led.led_left()
         motor.left()
     elif cmd == RIGHT:
-        # led_r()
+        led.led_right()
         motor.right()
     return "Success", 200, {'Content-Type': 'text/plain'}
 
