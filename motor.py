@@ -82,16 +82,3 @@ def stop():
     GPIO.output(Motor2B, GPIO.LOW)
 
 
-def low():
-    print("Low")
-    p1.ChangeDutyCycle(25)
-
-
-def medium():
-    print("medium")
-    p1.ChangeDutyCycle(50)
-
-
-def high():
-    print("high")
-    p1.ChangeDutyCycle(75)
