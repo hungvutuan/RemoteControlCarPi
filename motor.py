@@ -27,6 +27,7 @@ def stop():
 # Motor2B = 13
 # en1 = 1
 #
+# GPIO.setwarnings(False)
 # GPIO.setup(Motor1A, GPIO.OUT)
 # GPIO.setup(Motor1B, GPIO.OUT)
 # GPIO.setup(Motor2A, GPIO.OUT)
@@ -34,7 +35,7 @@ def stop():
 # GPIO.setup(en1, GPIO.OUT)
 #
 # p1 = GPIO.PWM(en1, 100)
-# p1.start(25)
+# p1.start(75)
 #
 # GPIO.output(Motor1A, GPIO.LOW)
 # GPIO.output(Motor1B, GPIO.LOW)
