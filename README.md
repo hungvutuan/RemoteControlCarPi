@@ -14,5 +14,6 @@ w/upward key = run forward
 s/downward key = run backward
 a/left key = turn left
 d/right key = turn right
-x = stop
+x/spacebar = stop
+
 

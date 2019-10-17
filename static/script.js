@@ -4,12 +4,14 @@ document.onkeydown = function (event) {
     const status = document.getElementById('status');
     //status.innerHTML = "DOWN Event Fired For : " + code;
 
+
     if (code === "ArrowUp" || code === "KeyW") moveUp();
     else if (code === "ArrowLeft" || code === "KeyA") moveLeft();
     else if (code === "ArrowDown" || code === "KeyS") moveDown();
     else if (code === "ArrowRight" || code === "KeyD") moveRight();
     else if (code === "Space" || code === "KeyX") moveStop();
     console.log(code);
+
 };
 
 function moveUp() {
@@ -46,6 +48,7 @@ function moveStop() {
     request.send();
     console.log("Stop");
 }
+
 
 // print distance with 1 sec sleep
 // Client must have a loop to send request (Get)
