@@ -58,7 +58,7 @@ function loopDistance() {
         $(document).ready(function() {
             $.get("/get_dist",
                 function (data) {
-                    if (data.result>range) $('#dist').text("Object Spotted");
+                    if (data.result<range) $('#dist').text("Object Spotted");
                     else $('#dist').text("READY");
                     console.log(data.result);
                 })
@@ -69,7 +69,7 @@ function loopDistance() {
 }
 loopDistance();                         // call the function for the first run
 
-$('#dist').text("READY");
+$('#dist').text("OK");
 
 // Client must have a loop to send request (Get)
 // The server receives and returns the distance accordingly
