@@ -9,8 +9,8 @@ class Camera(BaseCamera):
     def frames():
         with picamera.PiCamera() as camera:
             """let camera warm up"""
-            camera.resolution = (320,240)
-            camera.framerate = 5
+            camera.resolution = (160,128)
+            camera.framerate = 20
             camera.vflip = True
             time.sleep(2)
 

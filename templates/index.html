@@ -17,13 +17,13 @@
 <article>
     <div class="video">
         <h1 align="center">Video Streaming for Raspberry Pi</h1>
-        <div align="center"><img src="{{ url_for('video_feed') }}" alt="Video printer"></div>
+        <div align="center"><img class="vid" src="{{ url_for('video_feed') }}" alt="Video printer"></div>
     </div>
     <div class="signal" align="center">
         <h3 align="center">State</h3>
 
         {#PRINT SELF-CHANGING TEXT#}
-        <p id="dist">READY</p>
+        <p id="dist">Server Started</p>
     </div>
     <br/>
 
@@ -35,6 +35,7 @@
         </p>
         <p>
             <button class="left" onclick="moveLeft()"><span>&#8592;</span></button>
+{#            <img class="stop" onclick="javascript:moveStop()" src="img/06-512.png">#}
             <button class="stop" onclick="moveStop()">X</button>
             <button class="right" onclick="moveRight()"><span>&#8594;</span></button>
         </p>

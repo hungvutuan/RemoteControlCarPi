@@ -1,20 +1,20 @@
 #!/usr/bin/env python
 import random
 import motor
-import os
-import led
-from importlib import import_module
+# import led
 
 from flask import Flask, render_template, Response, request, jsonify
 
-# import camera driver
+"""import camera driver"""
+# import os
+# from importlib import import_module
 # if os.environ.get('CAMERA'):
 #     Camera = import_module('camera_' + os.environ['CAMERA']).Camera
 # else:
 #     from camera import Camera
 
 # Raspberry Pi camera module (requires picamera package)
-from camera_pi import Camera
+from camera import Camera
 
 app = Flask(__name__)
 app.secret_key = "vth"
@@ -39,7 +39,6 @@ def gen(camera):
     while True:
         """This function generates the frame for displaying the video. The 'yield' increments the iteration by the 
         next, therefore, the image overlaps. The frame variable is used later in the function video_feed()"""
-        # led.measure()
         frame = camera.get_frame()
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
@@ -57,21 +56,19 @@ def video_feed():
 @app.route('/<cmd>')
 def command(cmd=None):
     if cmd == STOP:
-        # led_s()
-        # measure()
+        # led.led_stop()
         motor.stop()
     elif cmd == FORWARD:
-        # led()
-
+        # led.led_off()
         motor.forward()
     elif cmd == BACKWARD:
-        # led()
+        # led.led_off()
         motor.backward()
     elif cmd == LEFT:
-        # led_l()
+        # led.led_left()
         motor.left()
     elif cmd == RIGHT:
-        # led_r()
+        # led.led_right()
         motor.right()
     return "Success", 200, {'Content-Type': 'text/plain'}
 
@@ -86,7 +83,7 @@ def shutdown_server():
     return render_template("log_out.html")
 
 
-def dist():             # will be replaced with led.distance()
+def dist():             # alternative for led.distance()
     return (random.random())*100
 
 
@@ -94,7 +91,10 @@ def dist():             # will be replaced with led.distance()
 def get_dist():
     if request.method == 'GET':
         request.args.get('dist', default=0, type=int)
-        return jsonify(result=led.distance())
+        # Run this for Raspberry Pi
+        # return jsonify(result=led.distance())
+        # Debug
+        return jsonify(result=dist())
 
 
 if __name__ == '__main__':
